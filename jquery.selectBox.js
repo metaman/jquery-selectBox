@@ -21,6 +21,10 @@ if(jQuery) (function($) {
 			//
 			// Private methods
 			//
+			
+			var refreshControlWidth = function(control, select) {
+				control.width(select.outerWidth())		
+			}
 
 			var init = function(select, data) {
 				
@@ -41,7 +45,6 @@ if(jQuery) (function($) {
 				var settings = data || {};
 				
 				control
-					.width(select.outerWidth())
 					.addClass(select.attr('class'))
 					.attr('title', select.attr('title') || '')
 					.attr('tabindex', parseInt(select.attr('tabindex')))
@@ -57,6 +60,8 @@ if(jQuery) (function($) {
 						control.removeClass('selectBox-active');
 						select.trigger('blur');
 					});
+					
+				refreshControlWidth(control, select);
 				
 				if( !$(window).data('selectBox-bindings') ) {
 					$(window)
@@ -185,7 +190,6 @@ if(jQuery) (function($) {
 					.hide();
 				
 			};
-
 
 			var getOptions = function(select, type) {
 				var options;
@@ -819,6 +823,7 @@ if(jQuery) (function($) {
 						break;
 				}
 
+				refreshControlWidth(control, select);
 			};
 
 
